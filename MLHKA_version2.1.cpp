@@ -24,6 +24,25 @@
 #include <time.h>
 #include <string>
 using namespace std;  //introduces namespace std
+
+#if !(_SVID_SOURCE || _XOPEN_SOURCE)
+double drand48(void) {
+    return rand() / (RAND_MAX + 1.0);
+}
+
+long int lrand48(void) {
+    return rand();
+}
+
+long int mrand48(void) {
+    return rand() > RAND_MAX / 2 ? rand() : -rand();
+}
+
+void srand48(long int seedval) {
+    srand(seedval);
+}
+#endif
+
 long double thetalikeli (long int, long int, long double);
 long double divlikeli (long int, long double, long double);
 long double factorial(long double);
